@@ -12,13 +12,14 @@ export default {
         'gray-medium': '#808080',
       },
       fontFamily: {
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'sans': ['Space Grotesk', 'system-ui', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.8s ease-out',
         'slide-up': 'slideUp 0.6s ease-out',
         'float': 'float 3s ease-in-out infinite',
         'grid-pulse': 'gridPulse 2s ease-in-out infinite',
+        'grid-glow': 'gridGlow 0.3s ease-out',
       },
       keyframes: {
         fadeIn: {
@@ -36,6 +37,10 @@ export default {
         gridPulse: {
           '0%, 100%': { opacity: '0.05' },
           '50%': { opacity: '0.15' },
+        },
+        gridGlow: {
+          '0%': { opacity: '0.05' },
+          '100%': { opacity: '0.3' },
         },
       },
     },

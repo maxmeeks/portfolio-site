@@ -29,13 +29,13 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 bg-dark-bg/80 backdrop-blur-sm border-b border-dark-border/20">
-      <div className="max-w-7xl mx-auto px-6 py-4">
+    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 bg-dark-bg/90 backdrop-blur-md border-b border-dark-border/30">
+      <div className="max-w-7xl mx-auto px-6 py-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-6">
             <span 
               ref={emailRef}
-              className="text-white-soft font-medium cursor-pointer hover:text-gray-light transition-colors duration-300"
+              className="text-white-soft font-medium cursor-pointer hover:text-gray-light transition-colors duration-300 tracking-wide"
               onClick={copyEmail}
             >
               max@meekhoff.com
@@ -51,17 +51,17 @@ const Header: React.FC = () => {
               className="text-gray-medium hover:text-white-soft transition-colors duration-300 flex items-center space-x-1"
             >
               <FileText size={16} />
-              <span className="text-sm">CV</span>
+              <span className="text-sm font-medium">CV</span>
             </a>
           </div>
           
-          <nav className="flex items-center space-x-8">
-            <a href="#work" className="text-white-soft hover:text-gray-light transition-colors duration-300">Work</a>
-            <a href="#about" className="text-white-soft hover:text-gray-light transition-colors duration-300">About</a>
-            <a href="#contact" className="text-white-soft hover:text-gray-light transition-colors duration-300">Contact</a>
+          <nav className="flex items-center space-x-10">
+            <a href="#work" className="text-white-soft hover:text-gray-light transition-colors duration-300 font-medium tracking-wide">Work</a>
+            <a href="#about" className="text-white-soft hover:text-gray-light transition-colors duration-300 font-medium tracking-wide">About</a>
+            <a href="#contact" className="text-white-soft hover:text-gray-light transition-colors duration-300 font-medium tracking-wide">Contact</a>
           </nav>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-5">
             <a href="https://linkedin.com" className="text-gray-medium hover:text-white-soft transition-colors duration-300">
               <Linkedin size={18} />
             </a>
