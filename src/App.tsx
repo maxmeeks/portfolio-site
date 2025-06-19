@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import AnimatedGrid from './components/AnimatedGrid';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Work from './components/Work';
@@ -27,15 +28,18 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-cream text-black-soft font-sans overflow-x-hidden">
-      <Header />
-      <main>
-        <Hero />
-        <Work />
-        <About />
-        <Contact />
-      </main>
-      <Footer />
+    <div className="bg-dark-bg text-white-soft font-sans overflow-x-hidden relative">
+      <AnimatedGrid />
+      <div className="relative z-20">
+        <Header />
+        <main>
+          <Hero />
+          <Work />
+          <About />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

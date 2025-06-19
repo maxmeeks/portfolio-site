@@ -26,14 +26,14 @@ const Contact: React.FC = () => {
   }, []);
 
   return (
-    <section id="contact" ref={contactRef} className="py-24 bg-cream">
+    <section id="contact" ref={contactRef} className="py-24 bg-dark-bg">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <div ref={contentRef}>
-          <h2 className="text-4xl md:text-5xl font-light text-black-soft mb-8">
+          <h2 className="text-4xl md:text-5xl font-light text-white-soft mb-8">
             Let's Work Together
           </h2>
           
-          <p className="text-xl text-gray-warm mb-16 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-light mb-16 max-w-2xl mx-auto">
             Have a project in mind? I'd love to hear about it. 
             Let's create something amazing together.
           </p>
@@ -41,7 +41,7 @@ const Contact: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
             <a 
               href="mailto:max@meekhoff.com"
-              className="group bg-black-soft text-cream px-8 py-4 rounded-full hover:bg-gray-warm transition-all duration-300 flex items-center justify-center space-x-2"
+              className="group bg-white-soft text-dark-bg px-8 py-4 rounded-full hover:bg-gray-light transition-all duration-300 flex items-center justify-center space-x-2"
             >
               <Mail size={20} />
               <span>Send me an email</span>
@@ -50,7 +50,7 @@ const Contact: React.FC = () => {
             
             <a 
               href="/cv.pdf"
-              className="group border-2 border-black-soft text-black-soft px-8 py-4 rounded-full hover:bg-black-soft hover:text-cream transition-all duration-300 flex items-center justify-center space-x-2"
+              className="group border-2 border-white-soft text-white-soft px-8 py-4 rounded-full hover:bg-white-soft hover:text-dark-bg transition-all duration-300 flex items-center justify-center space-x-2"
             >
               <span>Download CV</span>
               <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
@@ -60,21 +60,21 @@ const Contact: React.FC = () => {
           <div className="flex justify-center space-x-8">
             <a 
               href="https://linkedin.com"
-              className="text-gray-warm hover:text-black-soft transition-colors duration-300 flex items-center space-x-2"
+              className="text-gray-medium hover:text-white-soft transition-colors duration-300 flex items-center space-x-2"
             >
               <Linkedin size={24} />
               <span>LinkedIn</span>
             </a>
             <a 
               href="https://github.com"
-              className="text-gray-warm hover:text-black-soft transition-colors duration-300 flex items-center space-x-2"
+              className="text-gray-medium hover:text-white-soft transition-colors duration-300 flex items-center space-x-2"
             >
               <Github size={24} />
               <span>GitHub</span>
             </a>
             <a 
               href="https://twitter.com"
-              className="text-gray-warm hover:text-black-soft transition-colors duration-300 flex items-center space-x-2"
+              className="text-gray-medium hover:text-white-soft transition-colors duration-300 flex items-center space-x-2"
             >
               <Twitter size={24} />
               <span>Twitter</span>

@@ -100,11 +100,11 @@ const Work: React.FC = () => {
   };
 
   return (
-    <section id="work" ref={workRef} className="py-24 bg-cream">
+    <section id="work" ref={workRef} className="py-24 bg-dark-bg">
       <div className="max-w-7xl mx-auto px-6">
         <h2 
           ref={titleRef}
-          className="text-4xl md:text-5xl font-light text-black-soft mb-16 text-center"
+          className="text-4xl md:text-5xl font-light text-white-soft mb-16 text-center"
         >
           Selected Work
         </h2>
@@ -116,41 +116,41 @@ const Work: React.FC = () => {
               ref={addToRefs}
               className="group cursor-pointer"
             >
-              <div className="relative overflow-hidden rounded-2xl mb-6">
+              <div className="relative overflow-hidden rounded-2xl mb-6 border border-dark-border">
                 <img 
                   src={project.image}
                   alt={project.title}
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-black-soft/0 group-hover:bg-black-soft/20 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-dark-bg/0 group-hover:bg-dark-bg/20 transition-colors duration-300" />
                 
                 <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {project.liveUrl && (
                     <a 
                       href={project.liveUrl}
-                      className="bg-cream p-2 rounded-full hover:bg-cream-dark transition-colors duration-300"
+                      className="bg-dark-surface p-2 rounded-full hover:bg-dark-border transition-colors duration-300"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <ExternalLink size={16} className="text-black-soft" />
+                      <ExternalLink size={16} className="text-white-soft" />
                     </a>
                   )}
                   {project.githubUrl && (
                     <a 
                       href={project.githubUrl}
-                      className="bg-cream p-2 rounded-full hover:bg-cream-dark transition-colors duration-300"
+                      className="bg-dark-surface p-2 rounded-full hover:bg-dark-border transition-colors duration-300"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <Github size={16} className="text-black-soft" />
+                      <Github size={16} className="text-white-soft" />
                     </a>
                   )}
                 </div>
               </div>
               
-              <h3 className="text-2xl font-medium text-black-soft mb-3 group-hover:text-gray-warm transition-colors duration-300">
+              <h3 className="text-2xl font-medium text-white-soft mb-3 group-hover:text-gray-light transition-colors duration-300">
                 {project.title}
               </h3>
               
-              <p className="text-gray-warm mb-4 leading-relaxed">
+              <p className="text-gray-medium mb-4 leading-relaxed">
                 {project.description}
               </p>
               
@@ -158,7 +158,7 @@ const Work: React.FC = () => {
                 {project.tags.map((tag) => (
                   <span 
                     key={tag}
-                    className="text-sm bg-cream-dark text-black-soft px-3 py-1 rounded-full"
+                    className="text-sm bg-dark-surface text-gray-light px-3 py-1 rounded-full border border-dark-border"
                   >
                     {tag}
                   </span>

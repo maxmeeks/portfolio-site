@@ -63,31 +63,31 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section ref={heroRef} className="min-h-screen bg-cream flex items-center justify-center px-6 pt-20">
+    <section ref={heroRef} className="min-h-screen bg-dark-bg flex items-center justify-center px-6 pt-20">
       <div className="max-w-4xl mx-auto text-center">
         <div 
           ref={circleRef}
-          className="w-24 h-24 bg-black-soft rounded-full mx-auto mb-16 shadow-lg"
+          className="w-24 h-24 bg-white-soft rounded-full mx-auto mb-16 shadow-2xl shadow-white/10"
         />
         
         <h1 
           ref={nameRef}
-          className="text-5xl md:text-7xl lg:text-8xl font-light text-black-soft leading-tight mb-6"
+          className="text-5xl md:text-7xl lg:text-8xl font-light text-white-soft leading-tight mb-6"
         >
           Max Meekhoff
         </h1>
         
         <h2 
           ref={titleRef}
-          className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-warm leading-relaxed mb-8"
+          className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-light leading-relaxed mb-8"
         >
           Building digital products,<br />
-          brands, and <span className="text-black-soft font-normal">experience.</span>
+          brands, and <span className="text-white-soft font-normal">experience.</span>
         </h2>
         
         <p 
           ref={subtitleRef}
-          className="text-lg md:text-xl text-gray-warm mb-12 max-w-2xl mx-auto"
+          className="text-lg md:text-xl text-gray-medium mb-12 max-w-2xl mx-auto"
         >
           Creative developer and designer focused on crafting exceptional 
           digital experiences that make a lasting impact.
@@ -96,7 +96,7 @@ const Hero: React.FC = () => {
         <button 
           ref={buttonRef}
           onClick={scrollToWork}
-          className="group bg-black-soft text-cream px-8 py-4 rounded-full hover:bg-gray-warm transition-all duration-300 flex items-center space-x-2 mx-auto"
+          className="group bg-white-soft text-dark-bg px-8 py-4 rounded-full hover:bg-gray-light transition-all duration-300 flex items-center space-x-2 mx-auto"
         >
           <span>Latest Work</span>
           <ArrowDown size={18} className="group-hover:translate-y-1 transition-transform duration-300" />
