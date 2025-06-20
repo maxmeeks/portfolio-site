@@ -1,180 +1,111 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
+import React, { useEffect, useRef, useState } from "react";
 
 const AnimatedGrid: React.FC = () => {
-  const gridRef = useRef<HTMLDivElement>(null);
-  const cursorGlowRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [gridDimensions, setGridDimensions] = useState({ width: 0, height: 0 });
+	const canvasRef = useRef<HTMLCanvasElement>(null);
+	const [size, setSize] = useState({ w: 0, h: 0 });
+	const mouse = useRef({ x: -9999, y: -9999 });
 
-  useEffect(() => {
-    const updateGridDimensions = () => {
-      setGridDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
-    };
+	// keep canvas sized to viewport
+	useEffect(() => {
+		const onResize = () => {
+			setSize({ w: window.innerWidth, h: window.innerHeight });
+		};
+		onResize();
+		window.addEventListener("resize", onResize);
+		return () => window.removeEventListener("resize", onResize);
+	}, []);
 
-    updateGridDimensions();
-    window.addEventListener('resize', updateGridDimensions);
+	// track mouse
+	useEffect(() => {
+		const onMouse = (e: MouseEvent) => {
+			mouse.current.x = e.clientX;
+			mouse.current.y = e.clientY;
+		};
+		const onLeave = () => {
+			mouse.current.x = mouse.current.y = -9999;
+		};
+		document.addEventListener("mousemove", onMouse);
+		document.addEventListener("mouseleave", onLeave);
+		return () => {
+			document.removeEventListener("mousemove", onMouse);
+			document.removeEventListener("mouseleave", onLeave);
+		};
+	}, []);
 
-    return () => {
-      window.removeEventListener('resize', updateGridDimensions);
-    };
-  }, []);
+	// the draw loop
+	useEffect(() => {
+		let raf: number;
+		const ctx = canvasRef.current?.getContext("2d");
+		if (!ctx) return;
 
-  useEffect(() => {
-    const grid = gridRef.current;
-    const cursorGlow = cursorGlowRef.current;
-    
-    if (!grid || !cursorGlow) return;
+		const spacing = 50;
+		const maxD = 150;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      setMousePosition({ x: clientX, y: clientY });
-      
-      // Update cursor glow position
-      gsap.to(cursorGlow, {
-        x: clientX,
-        y: clientY,
-        duration: 0.2,
-        ease: "power2.out"
-      });
+		const draw = () => {
+			ctx.clearRect(0, 0, size.w, size.h);
 
-      // Animate grid lines near cursor
-      const gridLines = grid.querySelectorAll('.grid-line');
-      gridLines.forEach((line) => {
-        const lineElement = line as HTMLElement;
-        const lineRect = lineElement.getBoundingClientRect();
-        
-        let lineCenterX, lineCenterY;
-        
-        if (lineElement.classList.contains('vertical')) {
-          lineCenterX = lineRect.left;
-          lineCenterY = clientY;
-        } else {
-          lineCenterX = clientX;
-          lineCenterY = lineRect.top;
-        }
-        
-        const distance = Math.sqrt(
-          Math.pow(clientX - lineCenterX, 2) + Math.pow(clientY - lineCenterY, 2)
-        );
-        
-        const maxDistance = 150;
-        const intensity = Math.max(0, 1 - distance / maxDistance);
-        const opacity = 0.05 + (intensity * 0.4);
-        const blur = Math.max(0, 2 - (intensity * 2));
-        
-        gsap.to(lineElement, {
-          opacity: opacity,
-          filter: `blur(${blur}px)`,
-          duration: 0.2,
-          ease: "power2.out"
-        });
-      });
-    };
+			// draw all lines at base opacity
+			ctx.strokeStyle = "rgba(255,255,255,0.01)";
+			ctx.lineWidth = 1;
+			ctx.filter = "none";
+			ctx.beginPath();
+			for (let x = 0; x <= size.w; x += spacing) {
+				ctx.moveTo(x, 0);
+				ctx.lineTo(x, size.h);
+			}
+			for (let y = 0; y <= size.h; y += spacing) {
+				ctx.moveTo(0, y);
+				ctx.lineTo(size.w, y);
+			}
+			ctx.stroke();
 
-    const handleMouseLeave = () => {
-      // Reset all grid lines when mouse leaves
-      const gridLines = grid.querySelectorAll('.grid-line');
-      gridLines.forEach((line) => {
-        gsap.to(line, {
-          opacity: 0.05,
-          filter: 'blur(0px)',
-          duration: 0.5,
-          ease: "power2.out"
-        });
-      });
-    };
+			// draw “glow” on nearby lines
+			const mx = mouse.current.x;
+			const my = mouse.current.y;
+			if (mx >= 0 && my >= 0) {
+				for (let x = 0; x <= size.w; x += spacing) {
+					const d = Math.abs(mx - x);
+					if (d < maxD) {
+						const t = 1 - d / maxD;
+						ctx.strokeStyle = `rgba(255,255,255,${0.02 + t * 0.1})`;
+						ctx.lineWidth = 1;
+						ctx.filter = `blur(${Math.max(0, 2 - t * 2)}px)`;
+						ctx.beginPath();
+						ctx.moveTo(x, 0);
+						ctx.lineTo(x, size.h);
+						ctx.stroke();
+					}
+				}
+				for (let y = 0; y <= size.h; y += spacing) {
+					const d = Math.abs(my - y);
+					if (d < maxD) {
+						const t = 1 - d / maxD;
+						ctx.strokeStyle = `rgba(255,255,255,${0.03 + t * 0.1})`;
+						ctx.lineWidth = 1;
+						ctx.filter = `blur(${Math.max(0, 2 - t * 2)}px)`;
+						ctx.beginPath();
+						ctx.moveTo(0, y);
+						ctx.lineTo(size.w, y);
+						ctx.stroke();
+					}
+				}
+			}
 
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseleave', handleMouseLeave);
+			raf = requestAnimationFrame(draw);
+		};
 
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, [gridDimensions]);
+		draw();
+		return () => cancelAnimationFrame(raf);
+	}, [size]);
 
-  const generateGridLines = () => {
-    const lines = [];
-    const spacing = 50;
-    const { width, height } = gridDimensions;
-
-    // Vertical lines
-    for (let x = 0; x <= width; x += spacing) {
-      lines.push(
-        <div
-          key={`v-${x}`}
-          className="grid-line vertical absolute bg-gradient-to-b from-white/20 via-white/10 to-white/20"
-          style={{
-            left: x,
-            top: 0,
-            width: '1px',
-            height: '100vh',
-            opacity: 0.05,
-            filter: 'blur(0px)'
-          }}
-        />
-      );
-    }
-
-    // Horizontal lines
-    for (let y = 0; y <= height; y += spacing) {
-      lines.push(
-        <div
-          key={`h-${y}`}
-          className="grid-line horizontal absolute bg-gradient-to-r from-white/20 via-white/10 to-white/20"
-          style={{
-            left: 0,
-            top: y,
-            width: '100vw',
-            height: '1px',
-            opacity: 0.05,
-            filter: 'blur(0px)'
-          }}
-        />
-      );
-    }
-
-    return lines;
-  };
-
-  return (
-    <>
-      <div
-        ref={gridRef}
-        className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
-      >
-        {generateGridLines()}
-      </div>
-      
-      <div
-        ref={cursorGlowRef}
-        className="fixed pointer-events-none z-10 w-96 h-96 rounded-full opacity-30"
-        style={{
-          background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.02) 60%, transparent 100%)',
-          transform: 'translate(-50%, -50%)',
-          mixBlendMode: 'screen',
-          filter: 'blur(1px)'
-        }}
-      />
-      
-      {/* Additional smaller glow for more intensity */}
-      <div
-        className="fixed pointer-events-none z-10 w-48 h-48 rounded-full opacity-20"
-        style={{
-          left: mousePosition.x,
-          top: mousePosition.y,
-          background: 'radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)',
-          transform: 'translate(-50%, -50%)',
-          mixBlendMode: 'screen',
-          transition: 'left 0.1s ease-out, top 0.1s ease-out'
-        }}
-      />
-    </>
-  );
+	return (
+		<canvas
+			ref={canvasRef}
+			width={size.w}
+			height={size.h}
+			className="fixed inset-0 pointer-events-none z-40"
+		/>
+	);
 };
 
 export default AnimatedGrid;
