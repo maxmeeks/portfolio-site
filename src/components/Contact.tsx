@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Mail, Linkedin, Github, Twitter, ArrowUpRight } from "lucide-react";
+import { Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,25 +66,20 @@ const Contact: React.FC = () => {
 
 					<div className="flex justify-center space-x-8">
 						<a
-							href="https://linkedin.com"
+							href="https://www.linkedin.com/in/maxmeekhoff/"
+							target="_blank"
 							className="text-gray-medium hover:text-white-soft transition-colors duration-300 flex items-center space-x-2"
 						>
 							<Linkedin size={24} />
 							<span>LinkedIn</span>
 						</a>
 						<a
-							href="https://github.com"
+							href="https://github.com/maxmeeks"
+							target="_blank"
 							className="text-gray-medium hover:text-white-soft transition-colors duration-300 flex items-center space-x-2"
 						>
 							<Github size={24} />
 							<span>GitHub</span>
-						</a>
-						<a
-							href="https://twitter.com"
-							className="text-gray-medium hover:text-white-soft transition-colors duration-300 flex items-center space-x-2"
-						>
-							<Twitter size={24} />
-							<span>Twitter</span>
 						</a>
 					</div>
 				</div>

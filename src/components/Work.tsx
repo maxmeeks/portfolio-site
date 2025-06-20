@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ExternalLink, Github } from "lucide-react";
-
+import snowmanPoolImg from "../assets/snowman-golf.png";
 gsap.registerPlugin(ScrollTrigger);
 
 interface Project {
@@ -18,50 +18,30 @@ interface Project {
 const projects: Project[] = [
 	{
 		id: 1,
-		title: "E-commerce Platform",
-		description:
-			"Modern e-commerce solution with advanced filtering, real-time inventory, and seamless checkout experience.",
-		tags: ["React", "Node.js", "MongoDB", "Stripe"],
-		image: "https://images.pexels.com/photos/4968660/pexels-photo-4968660.jpeg?auto=compress&cs=tinysrgb&w=800",
-		liveUrl: "https://example.com",
-		githubUrl: "https://github.com",
+		title: "Snowman Golf Pools",
+		description: "Vue fantasy golf application with live ESPN leaderboard",
+		tags: ["Vue", "Node.js", "API", "Vercel"],
+		image: snowmanPoolImg,
+		liveUrl: "https://snowman-golf-pools.vercel.app/",
+		githubUrl: "https://github.com/maxmeeks/golf-pool",
 	},
 	{
 		id: 2,
-		title: "Brand Design System",
+		title: "Fantasy Golf Dynasty",
 		description:
 			"Comprehensive design system and component library for a fintech startup, ensuring consistency across all platforms.",
 		tags: ["Figma", "React", "Storybook", "TypeScript"],
 		image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800",
 		liveUrl: "https://example.com",
 	},
-	{
-		id: 3,
-		title: "Data Visualization Dashboard",
-		description:
-			"Interactive dashboard for analytics and reporting with real-time data visualization and custom metrics.",
-		tags: ["D3.js", "React", "Python", "PostgreSQL"],
-		image: "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800",
-		githubUrl: "https://github.com",
-	},
-	{
-		id: 4,
-		title: "Mobile Banking App",
-		description:
-			"Secure mobile banking application with biometric authentication and advanced transaction management.",
-		tags: ["React Native", "Firebase", "Plaid API"],
-		image: "https://images.pexels.com/photos/4968630/pexels-photo-4968630.jpeg?auto=compress&cs=tinysrgb&w=800",
-		liveUrl: "https://example.com",
-	},
 ];
 
 const Work: React.FC = () => {
-	const workRef = useRef<HTMLDivElement>(null);
 	const titleRef = useRef<HTMLHeadingElement>(null);
-	const projectsRef = useRef<HTMLDivElement[]>([]);
+	const cardsRef = useRef<HTMLDivElement[]>([]);
 
 	useEffect(() => {
-		// Title animation
+		// Title fade‐in
 		gsap.fromTo(
 			titleRef.current,
 			{ y: 50, opacity: 0 },
@@ -76,37 +56,43 @@ const Work: React.FC = () => {
 				},
 			}
 		);
-
-		// Projects stagger animation
-		projectsRef.current.forEach((project, index) => {
-			if (project) {
-				gsap.fromTo(
-					project,
-					{ y: 60, opacity: 0 },
-					{
-						y: 0,
-						opacity: 1,
-						duration: 0.8,
-						delay: index * 0.1,
-						ease: "power3.out",
-						scrollTrigger: {
-							trigger: project,
-							start: "top 85%",
-						},
-					}
-				);
-			}
+		// Cards stagger fade‐in
+		cardsRef.current.forEach((card, i) => {
+			if (!card) return;
+			gsap.fromTo(
+				card,
+				{ y: 60, opacity: 0 },
+				{
+					y: 0,
+					opacity: 1,
+					duration: 0.8,
+					delay: i * 0.1,
+					ease: "power3.out",
+					scrollTrigger: {
+						trigger: card,
+						start: "top 85%",
+					},
+				}
+			);
 		});
 	}, []);
 
 	const addToRefs = (el: HTMLDivElement | null) => {
-		if (el && !projectsRef.current.includes(el)) {
-			projectsRef.current.push(el);
+		if (el && !cardsRef.current.includes(el)) {
+			cardsRef.current.push(el);
 		}
 	};
 
 	return (
-		<section id="work" ref={workRef} className="py-24 bg-dark-bg">
+		<section
+			id="work"
+			className="relative py-24 bg-dark-bg border-y border-white"
+		>
+			{/* 03 // WORK label */}
+			<div className="absolute top-0 left-0 p-6 text-sm font-mono text-white/70">
+				03 // WORK
+			</div>
+
 			<div className="max-w-7xl mx-auto px-6">
 				<h2
 					ref={titleRef}
@@ -120,22 +106,24 @@ const Work: React.FC = () => {
 						<div
 							key={project.id}
 							ref={addToRefs}
-							className="group cursor-pointer"
+							className="group cursor-pointer overflow-hidden"
 						>
-							<div className="relative overflow-hidden mb-6 border border-dark-border">
+							{/* Image container */}
+							<div className="relative h-96 overflow-hidden border border-dark-border">
 								<img
 									src={project.image}
 									alt={project.title}
-									className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+									className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
 								/>
-								<div className="absolute inset-0 bg-dark-bg/0 group-hover:bg-dark-bg/20 transition-colors duration-300" />
-
+								{/* dimming overlay on hover */}
+								<div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+								{/* action icons */}
 								<div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 									{project.liveUrl && (
 										<a
 											href={project.liveUrl}
-											className="bg-dark-surface p-2 rounded-full hover:bg-dark-border transition-colors duration-300"
 											onClick={(e) => e.stopPropagation()}
+											className="bg-dark-surface p-2 rounded-full hover:bg-dark-border transition-colors"
 										>
 											<ExternalLink
 												size={16}
@@ -146,8 +134,8 @@ const Work: React.FC = () => {
 									{project.githubUrl && (
 										<a
 											href={project.githubUrl}
-											className="bg-dark-surface p-2 rounded-full hover:bg-dark-border transition-colors duration-300"
 											onClick={(e) => e.stopPropagation()}
+											className="bg-dark-surface p-2 rounded-full hover:bg-dark-border transition-colors"
 										>
 											<Github
 												size={16}
@@ -156,25 +144,27 @@ const Work: React.FC = () => {
 										</a>
 									)}
 								</div>
-							</div>
-
-							<h3 className="text-2xl font-medium text-white-soft mb-3 group-hover:text-gray-light transition-colors duration-300">
-								{project.title}
-							</h3>
-
-							<p className="text-gray-medium mb-4 leading-relaxed">
-								{project.description}
-							</p>
-
-							<div className="flex flex-wrap gap-2">
-								{project.tags.map((tag) => (
-									<span
-										key={tag}
-										className="text-sm bg-dark-surface text-gray-light px-3 py-1 rounded-full border border-dark-border"
-									>
-										{tag}
-									</span>
-								))}
+								{/* text overlay */}
+								<div className="absolute inset-0 flex flex-col justify-center items-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
+									<div className="bg-black/70 p-4 rounded-md max-w-full">
+										<h3 className="text-2xl font-medium text-white-soft mb-2">
+											{project.title}
+										</h3>
+										<p className="text-gray-light mb-4">
+											{project.description}
+										</p>
+										<div className="flex flex-wrap gap-2">
+											{project.tags.map((tag) => (
+												<span
+													key={tag}
+													className="text-sm bg-dark-surface text-gray-light px-3 py-1 rounded-full border border-dark-border"
+												>
+													{tag}
+												</span>
+											))}
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					))}

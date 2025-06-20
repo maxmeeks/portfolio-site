@@ -32,14 +32,14 @@ const About: React.FC = () => {
 			className="py-24 border-y border-white relative"
 		>
 			<div
-				className="absolute
-      left-6        
-      top-0
-      transform
-      -translate-y-1/2  
-      text-sm
-      font-mono
-      text-white/70"
+				className="
+				absolute
+				top-0
+				left-0
+				p-6              
+				text-sm
+				font-mono
+				text-white/70"
 			>
 				02 // ABOUT
 			</div>
@@ -57,7 +57,7 @@ const About: React.FC = () => {
 							between design and technology.
 						</p>
 
-						<p className="mb-8">
+						<p className="text-xl mb-8">
 							My approach combines technical expertise with
 							creative vision to deliver solutions that not only
 							function flawlessly but also provide exceptional
@@ -66,71 +66,7 @@ const About: React.FC = () => {
 							interactive design.
 						</p>
 
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
-							<div>
-								<h3 className="text-2xl font-medium text-white-soft mb-6">
-									Skills
-								</h3>
-								<div className="space-y-4">
-									<div className="flex justify-between items-center">
-										<span>Frontend Development</span>
-										<div className="w-32 h-2 bg-dark-border rounded-full">
-											<div className="w-30 h-2 bg-white-soft rounded-full"></div>
-										</div>
-									</div>
-									<div className="flex justify-between items-center">
-										<span>UI/UX Design</span>
-										<div className="w-32 h-2 bg-dark-border rounded-full">
-											<div className="w-28 h-2 bg-white-soft rounded-full"></div>
-										</div>
-									</div>
-									<div className="flex justify-between items-center">
-										<span>Brand Design</span>
-										<div className="w-32 h-2 bg-dark-border rounded-full">
-											<div className="w-26 h-2 bg-white-soft rounded-full"></div>
-										</div>
-									</div>
-									<div className="flex justify-between items-center">
-										<span>Motion Design</span>
-										<div className="w-32 h-2 bg-dark-border rounded-full">
-											<div className="w-24 h-2 bg-white-soft rounded-full"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div>
-								<h3 className="text-2xl font-medium text-white-soft mb-6">
-									Experience
-								</h3>
-								<div className="space-y-6">
-									<div>
-										<h4 className="font-medium text-white-soft">
-											Senior Designer
-										</h4>
-										<p className="text-gray-medium">
-											Tech Startup • 2022-Present
-										</p>
-									</div>
-									<div>
-										<h4 className="font-medium text-white-soft">
-											Product Designer
-										</h4>
-										<p className="text-gray-medium">
-											Design Agency • 2020-2022
-										</p>
-									</div>
-									<div>
-										<h4 className="font-medium text-white-soft">
-											Frontend Developer
-										</h4>
-										<p className="text-gray-medium">
-											Freelance • 2019-2020
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16"></div>
 					</div>
 				</div>
 			</div>

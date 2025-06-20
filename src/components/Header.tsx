@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { Copy, FileText, Linkedin, Github, Twitter } from "lucide-react";
+import { Copy, FileText, Linkedin, Github } from "lucide-react";
 
 const Header: React.FC = () => {
 	const headerRef = useRef<HTMLDivElement>(null);
@@ -61,16 +61,16 @@ const Header: React.FC = () => {
 
 					<nav className="flex items-center space-x-10">
 						<a
-							href="#work"
-							className="text-lg text-white-soft hover:text-gray-light transition-colors duration-300 font-medium tracking-wide"
-						>
-							Work
-						</a>
-						<a
 							href="#about"
 							className="text-lg text-white-soft hover:text-gray-light transition-colors duration-300 font-medium tracking-wide"
 						>
 							About
+						</a>
+						<a
+							href="#work"
+							className="text-lg text-white-soft hover:text-gray-light transition-colors duration-300 font-medium tracking-wide"
+						>
+							Work
 						</a>
 						<a
 							href="#contact"
