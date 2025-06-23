@@ -78,32 +78,32 @@ const Header: React.FC<HeaderProps> = ({ lenis }) => {
 		>
 			<div className="max-w-7xl mx-auto px-6 py-5">
 				<div className="flex items-center justify-between">
-					<div className="flex items-center space-x-6 font-bold">
+					<div className="flex items-center space-x-6 font-bold lg:text-base text-sm">
 						Max M.
 					</div>
 
-					<nav className="flex items-center space-x-10">
+					<nav className="flex items-center lg:space-x-8 space-x-6">
 						<a
 							href="#about"
-							className="text-base text-white-soft hover:text-gray-light transition-colors duration-300 font-bold tracking-wide"
+							className="lg:text-base text-sm text-white-soft hover:text-gray-light transition-colors duration-300 font-bold tracking-wide"
 						>
 							About
 						</a>
 						<a
 							href="#work"
-							className="text-base text-white-soft hover:text-gray-light transition-colors duration-300 font-bold tracking-wide"
+							className="lg:text-base text-sm text-white-soft hover:text-gray-light transition-colors duration-300 font-bold tracking-wide"
 						>
 							Projects
 						</a>
 						<a
 							href="#contact"
-							className="text-base text-white-soft hover:text-gray-light transition-colors duration-300 font-bold tracking-wide"
+							className="lg:text-base text-sm text-white-soft hover:text-gray-light transition-colors duration-300 font-bold tracking-wide"
 						>
 							Contact
 						</a>
 					</nav>
 
-					<div className="flex items-center space-x-5">
+					<div className="lg:flex items-center space-x-5 hidden">
 						<a
 							href="https://www.linkedin.com/in/maxmeekhoff/"
 							className="text-gray-medium hover:text-white-soft transition-colors duration-300"
