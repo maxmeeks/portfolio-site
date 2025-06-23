@@ -11,7 +11,6 @@ const SlicedText: React.FC<SlicedTextProps> = ({ text, numSlices = 8 }) => {
 	const [sliceHeight, setSliceHeight] = useState(0);
 	const hasAnimatedIn = useRef(false);
 
-	// 1) measure <h1> height on mount + on window resize
 	useLayoutEffect(() => {
 		const container = containerRef.current;
 		if (!container) return;
@@ -25,7 +24,6 @@ const SlicedText: React.FC<SlicedTextProps> = ({ text, numSlices = 8 }) => {
 		return () => window.removeEventListener("resize", measure);
 	}, [text, numSlices]);
 
-	// 2) entrance animation: fire once when sliceHeight becomes non-zero
 	useLayoutEffect(() => {
 		if (!sliceHeight || hasAnimatedIn.current) return;
 		hasAnimatedIn.current = true;
@@ -67,12 +65,10 @@ const SlicedText: React.FC<SlicedTextProps> = ({ text, numSlices = 8 }) => {
 				height: sliceHeight ? `${sliceHeight * numSlices}px` : "auto",
 			}}
 		>
-			{/* Invisible in‐flow H1 so we measure & get correct width */}
-			<h1 className="invisible whitespace-nowrap text-6xl md:text-8xl lg:text-9xl font-bold">
+			<h1 className="invisible whitespace-nowrap text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold">
 				{text}
 			</h1>
 
-			{/* Slices */}
 			{sliceHeight > 0 &&
 				Array.from({ length: numSlices }).map((_, i) => (
 					<div
@@ -87,7 +83,7 @@ const SlicedText: React.FC<SlicedTextProps> = ({ text, numSlices = 8 }) => {
 					>
 						<div
 							className="slice-text absolute left-0 whitespace-nowrap 
-                         text-6xl md:text-8xl lg:text-9xl font-bold"
+                         text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold"
 							style={{
 								top: `-${i * sliceHeight}px`,
 								left: 0,

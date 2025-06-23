@@ -21,10 +21,7 @@ const CrosshairCursor: React.FC = () => {
 			setY(e.clientY);
 		};
 
-		// Animate arms in on click / out on release
-		// in your useEffect:
 		const handleMouseDown = () => {
-			// move *in* by +0.2rem or −0.2rem relative to wherever you are
 			gsap.to(topRef.current, {
 				y: "+=0.2rem",
 				duration: 0.15,
@@ -48,7 +45,6 @@ const CrosshairCursor: React.FC = () => {
 		};
 
 		const handleMouseUp = () => {
-			// move back *out* by the exact opposite amount
 			gsap.to(topRef.current, {
 				y: "-=0.2rem",
 				duration: 0.3,
@@ -86,7 +82,6 @@ const CrosshairCursor: React.FC = () => {
 			ref={cursorRef}
 			className=" hidden md:block fixed w-[1.7rem] h-[1.7rem] top-[-0.83rem] left-[-0.83rem] pointer-events-none mix-blend-difference z-[100000] will-change-transform"
 		>
-			{/* Top arm */}
 			<div
 				ref={topRef}
 				className="
@@ -97,7 +92,6 @@ const CrosshairCursor: React.FC = () => {
         "
 			/>
 
-			{/* Bottom arm */}
 			<div
 				ref={bottomRef}
 				className="
@@ -108,7 +102,6 @@ const CrosshairCursor: React.FC = () => {
         "
 			/>
 
-			{/* Left arm */}
 			<div
 				ref={leftRef}
 				className="
@@ -119,7 +112,6 @@ const CrosshairCursor: React.FC = () => {
         "
 			/>
 
-			{/* Right arm */}
 			<div
 				ref={rightRef}
 				className="

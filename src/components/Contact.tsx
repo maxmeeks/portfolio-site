@@ -62,17 +62,6 @@ const Contact: React.FC = () => {
 							</span>
 							<Copy size={16} />
 						</button>
-
-						<a
-							href="/resume.pdf"
-							className="group border-2 border-white-soft text-white-soft px-8 py-4 rounded-full hover:bg-white-soft hover:text-dark-bg transition-all duration-300 flex items-center justify-center space-x-2"
-						>
-							<span>Download Resume</span>
-							<ArrowUpRight
-								size={16}
-								className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
-							/>
-						</a>
 					</div>
 
 					<div className="flex justify-center space-x-8">

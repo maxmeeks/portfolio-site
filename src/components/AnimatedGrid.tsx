@@ -5,7 +5,6 @@ const AnimatedGrid: React.FC = () => {
 	const [size, setSize] = useState({ w: 0, h: 0 });
 	const mouse = useRef({ x: -9999, y: -9999 });
 
-	// keep canvas sized to viewport
 	useEffect(() => {
 		const onResize = () => {
 			setSize({ w: window.innerWidth, h: window.innerHeight });
@@ -15,7 +14,6 @@ const AnimatedGrid: React.FC = () => {
 		return () => window.removeEventListener("resize", onResize);
 	}, []);
 
-	// track mouse
 	useEffect(() => {
 		const onMouse = (e: MouseEvent) => {
 			mouse.current.x = e.clientX;
@@ -32,7 +30,6 @@ const AnimatedGrid: React.FC = () => {
 		};
 	}, []);
 
-	// the draw loop
 	useEffect(() => {
 		let raf: number;
 		const ctx = canvasRef.current?.getContext("2d");
@@ -59,7 +56,6 @@ const AnimatedGrid: React.FC = () => {
 			}
 			ctx.stroke();
 
-			// draw “glow” on nearby lines
 			const mx = mouse.current.x;
 			const my = mouse.current.y;
 			if (mx >= 0 && my >= 0) {

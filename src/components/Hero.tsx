@@ -6,13 +6,12 @@ import SlicedText from "./SlicedText";
 const Hero: React.FC = () => {
 	const subtitleRef = useRef<HTMLParagraphElement>(null);
 	const buttonRef = useRef<HTMLButtonElement>(null);
-	// keep a ref to the hover tween so we can kill it on mouseleave
+	const scrollIndicatorRef = useRef<HTMLDivElement>(null);
 	const hoverTween = useRef<GSAPTween | null>(null);
 
 	useEffect(() => {
 		const tl = gsap.timeline({ delay: 0.3 });
 
-		// Animate subtitle in on page load
 		tl.fromTo(
 			subtitleRef.current,
 			{ y: 30, opacity: 0 },
@@ -20,16 +19,21 @@ const Hero: React.FC = () => {
 			"-=0.4"
 		);
 
-		// Animate button in
 		tl.fromTo(
 			buttonRef.current,
 			{ y: 30, opacity: 0 },
 			{ y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
 			"-=0.4"
 		);
+
+		tl.fromTo(
+			scrollIndicatorRef.current,
+			{ x: -30, opacity: 0 },
+			{ x: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+			"-=0.6"
+		);
 	}, []);
 
-	// on hover of the button, float the subtitle
 	const handleButtonEnter = () => {
 		if (!subtitleRef.current) return;
 		hoverTween.current = gsap.to(subtitleRef.current, {
@@ -42,10 +46,8 @@ const Hero: React.FC = () => {
 	};
 
 	const handleButtonLeave = () => {
-		// kill the infinite tween
 		hoverTween.current?.kill();
 		hoverTween.current = null;
-		// return subtitle back to zero
 		if (subtitleRef.current) {
 			gsap.to(subtitleRef.current, {
 				y: 0,
@@ -55,13 +57,28 @@ const Hero: React.FC = () => {
 		}
 	};
 
-	const scollToAbout = () => {
-		const workSection = document.getElementById("about");
-		workSection?.scrollIntoView({ behavior: "smooth" });
+	const scrollToAbout = () => {
+		const aboutSection = document.getElementById("about");
+		aboutSection?.scrollIntoView({ behavior: "smooth" });
 	};
 
 	return (
-		<section className="min-h-screen bg-dark-bg flex items-center justify-center px-6 pt-20">
+		<section className="min-h-screen bg-dark-bg flex items-center justify-center px-6 pt-20 relative">
+			<div
+				ref={scrollIndicatorRef}
+				className="absolute top-1/4 left-6 z-40"
+			>
+				<div className="flex items-center space-x-3 text-white/80 hover:text-white transition-colors duration-300 group">
+					<span className="text-base font-mono tracking-wider">
+						01 // Scroll
+					</span>
+					<ArrowDown
+						size={16}
+						className="group-hover:translate-y-1 transition-transform duration-300"
+					/>
+				</div>
+			</div>
+
 			<div className="mx-auto text-center">
 				<SlicedText text="Max Meekhoff" numSlices={8} />
 
@@ -75,7 +92,7 @@ const Hero: React.FC = () => {
 
 				<button
 					ref={buttonRef}
-					onClick={scollToAbout}
+					onClick={scrollToAbout}
 					onMouseEnter={handleButtonEnter}
 					onMouseLeave={handleButtonLeave}
 					className="group font-bold bg-white-soft text-dark-bg px-10 py-5 rounded-full hover:bg-gray-light transition-all duration-300 flex items-center space-x-3 mx-auto text-lg shadow-2xl shadow-white/10 hover:shadow-white/20 hover:scale-105"

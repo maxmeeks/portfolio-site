@@ -37,6 +37,17 @@ const About: React.FC = () => {
 		});
 
 		tl.fromTo(
+			aboutRef.current,
+			{ x: -30, opacity: 0 },
+			{
+				x: 0,
+				opacity: 1,
+				duration: 0.6,
+				ease: "power3.out",
+			}
+		);
+
+		tl.fromTo(
 			contentRef.current,
 			{ y: 60, opacity: 0 },
 			{
@@ -127,12 +138,11 @@ const About: React.FC = () => {
 	};
 
 	return (
-		<section
-			id="about"
-			ref={aboutRef}
-			className="py-24 border-y border-white/30 relative"
-		>
-			<div className="absolute top-0 left-0 p-6 text-base font-mono text-white/80">
+		<section id="about" className="py-24 border-y border-white/30 relative">
+			<div
+				ref={aboutRef}
+				className="absolute top-0 left-0 p-6 text-base font-mono text-white/80"
+			>
 				02 // ABOUT
 			</div>
 
@@ -170,7 +180,6 @@ const About: React.FC = () => {
 							</p>
 						</div>
 
-						{/* Skills Section */}
 						<div className="w-full max-w-3xl">
 							<h3 className="text-2xl font-bold text-white-soft mb-8 text-center">
 								Skills & Technologies

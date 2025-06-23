@@ -16,4 +16,8 @@
     -webkit-text-size-adjust: none;
     -webkit-font-smoothing: antialiased;
   }
+
+  button {
+    cursor: none;
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedGrid from "./components/AnimatedGrid";
@@ -15,20 +15,20 @@ import Lenis from "lenis";
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+	const lenisRef = useRef<Lenis | null>(null);
+
 	useEffect(() => {
-		// 1) Initialize Lenis with v1 options
 		const lenis = new Lenis({
-			duration: 1.2, // overall scroll duration
-			easing: (
-				t: number // custom easing fn
-			) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-			lerp: 0.1, // smoothing (0 < lerp < 1)
-			orientation: "vertical", // scroll direction
-			gestureOrientation: "vertical", // touch gesture direction
-			smoothWheel: true, // enable wheel smoothing
+			duration: 1.2,
+			easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+			lerp: 0.1,
+			orientation: "vertical",
+			gestureOrientation: "vertical",
+			smoothWheel: true,
 		});
 
-		// 2) Drive Lenis + keep ScrollTrigger in sync
+		lenisRef.current = lenis;
+
 		const raf = (time: number) => {
 			lenis.raf(time);
 			ScrollTrigger.update();
@@ -49,7 +49,7 @@ function App() {
 			<div className="bg-dark-bg text-white-soft font-sans overflow-x-hidden relative">
 				<AnimatedGrid />
 				<div className="relative">
-					<Header />
+					<Header lenis={lenisRef.current} />
 					<main>
 						<Hero />
 						<About />
