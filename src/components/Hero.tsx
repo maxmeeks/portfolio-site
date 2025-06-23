@@ -67,7 +67,7 @@ const Hero: React.FC = () => {
 
 				<p
 					ref={subtitleRef}
-					className="text-lg md:text-xl text-gray-medium my-10 max-w-2xl mx-auto leading-relaxed"
+					className="text-lg md:text-xl text-white/80 my-10 max-w-2xl mx-auto leading-relaxed"
 				>
 					Creative developer focused on crafting exceptional digital
 					experiences that make a lasting impact.
@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
 					onClick={scollToAbout}
 					onMouseEnter={handleButtonEnter}
 					onMouseLeave={handleButtonLeave}
-					className="group bg-white-soft text-dark-bg px-10 py-5 rounded-full hover:bg-gray-light transition-all duration-300 flex items-center space-x-3 mx-auto font-medium text-lg shadow-2xl shadow-white/10 hover:shadow-white/20 hover:scale-105"
+					className="group font-bold bg-white-soft text-dark-bg px-10 py-5 rounded-full hover:bg-gray-light transition-all duration-300 flex items-center space-x-3 mx-auto text-lg shadow-2xl shadow-white/10 hover:shadow-white/20 hover:scale-105"
 				>
 					<span>About Me</span>
 					<ArrowDown

@@ -3,6 +3,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ExternalLink, Github } from "lucide-react";
 import snowmanPoolImg from "../assets/snowman-golf.png";
+import portfolioSite from "../assets/portfolio-site.png";
+
 gsap.registerPlugin(ScrollTrigger);
 
 interface Project {
@@ -20,19 +22,18 @@ const projects: Project[] = [
 		id: 1,
 		title: "Snowman Golf Pools",
 		description: "Vue fantasy golf application with live ESPN leaderboard",
-		tags: ["Vue", "Node.js", "API", "Vercel"],
+		tags: ["Vue", "Vite", "ESPN API", "Pinia"],
 		image: snowmanPoolImg,
 		liveUrl: "https://snowman-golf-pools.vercel.app/",
 		githubUrl: "https://github.com/maxmeeks/golf-pool",
 	},
 	{
 		id: 2,
-		title: "Fantasy Golf Dynasty",
-		description:
-			"Comprehensive design system and component library for a fintech startup, ensuring consistency across all platforms.",
-		tags: ["Figma", "React", "Storybook", "TypeScript"],
-		image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800",
-		liveUrl: "https://example.com",
+		title: "maxmeekhoff.com",
+		description: "Personal Portfolio site",
+		tags: ["React", "Vite", "Typescript", "Vercel", "GSAP"],
+		image: portfolioSite,
+		liveUrl: "https:maxmeekhoff.com",
 	},
 ];
 
@@ -86,17 +87,17 @@ const Work: React.FC = () => {
 	return (
 		<section
 			id="work"
-			className="relative py-24 bg-dark-bg border-y border-white"
+			className="relative py-24 bg-dark-bg border-y border-white/30"
 		>
 			{/* 03 // WORK label */}
-			<div className="absolute top-0 left-0 p-6 text-sm font-mono text-white/70">
+			<div className="absolute top-0 left-0 p-6 text-base font-mono text-white/80">
 				03 // WORK
 			</div>
 
 			<div className="max-w-7xl mx-auto px-6">
 				<h2
 					ref={titleRef}
-					className="text-4xl md:text-5xl font-light text-white-soft mb-16 text-center"
+					className="text-4xl md:text-5xl font-bold text-white-soft mb-16 text-center"
 				>
 					Recent Projects
 				</h2>

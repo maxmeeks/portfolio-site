@@ -84,19 +84,7 @@ const CrosshairCursor: React.FC = () => {
 	return (
 		<div
 			ref={cursorRef}
-			className="
-				hidden               
-        md:block
-        fixed
-        w-[1.7rem]
-        h-[1.7rem]
-        top-[-0.83rem]
-        left-[-0.83rem]
-        pointer-events-none
-        mix-blend-difference
-        z-[100000]
-        will-change-transform
-      "
+			className=" hidden md:block fixed w-[1.7rem] h-[1.7rem] top-[-0.83rem] left-[-0.83rem] pointer-events-none mix-blend-difference z-[100000] will-change-transform"
 		>
 			{/* Top arm */}
 			<div

@@ -48,7 +48,7 @@ function App() {
 			<CrosshairCursor />
 			<div className="bg-dark-bg text-white-soft font-sans overflow-x-hidden relative">
 				<AnimatedGrid />
-				<div className="relative z-20">
+				<div className="relative">
 					<Header />
 					<main>
 						<Hero />
