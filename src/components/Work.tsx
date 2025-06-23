@@ -238,7 +238,7 @@ const Work: React.FC = () => {
 									className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
 								/>
 
-								<div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+								<div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
 								<div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 									{project.liveUrl && (
@@ -247,7 +247,7 @@ const Work: React.FC = () => {
 											target="_blank"
 											rel="noopener noreferrer"
 											onClick={(e) => e.stopPropagation()}
-											className="bg-dark-surface p-2 rounded-full hover:bg-dark-border transition-colors"
+											className="bg-dark-surface p-2 rounded-full hover:bg-dark-border transition-colors z-10"
 										>
 											<ExternalLink
 												size={16}
@@ -261,7 +261,7 @@ const Work: React.FC = () => {
 											target="_blank"
 											rel="noopener noreferrer"
 											onClick={(e) => e.stopPropagation()}
-											className="bg-dark-surface p-2 rounded-full hover:bg-dark-border transition-colors"
+											className="bg-dark-surface p-2 rounded-full hover:bg-dark-border transition-colors z-10"
 										>
 											<Github
 												size={16}
