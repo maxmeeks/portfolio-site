@@ -9,6 +9,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import CrosshairCursor from "./components/CrosshairCursor";
+import InteractiveBorder from "./components/InteractiveBorder";
 import Lenis from "lenis";
 
 // Register GSAP plugins
@@ -46,6 +47,7 @@ function App() {
 	return (
 		<div className="relative">
 			<CrosshairCursor />
+			<InteractiveBorder />
 			<div className="bg-dark-bg text-white-soft font-sans overflow-x-hidden relative">
 				<AnimatedGrid />
 				<div className="relative">

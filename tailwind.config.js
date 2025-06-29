@@ -10,7 +10,7 @@ export default {
 				"white-soft": "#F8F8F8",
 				"gray-light": "#B0B0B0",
 				"gray-medium": "#808080",
-				"green-light": "##00ff88",
+				"green-light": "#00ff88",
 			},
 			fontFamily: {
 				sans: ["Montserrat", "system-ui", "sans-serif"],
